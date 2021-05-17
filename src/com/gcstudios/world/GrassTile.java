@@ -2,9 +2,9 @@ package com.gcstudios.world;
 
 import java.awt.image.BufferedImage;
 
-public class WallTile extends Tile {
+public class GrassTile extends Tile {
 
-	public WallTile(int x, int y, BufferedImage sprite) {
+	public GrassTile(int x, int y, BufferedImage sprite) {
 		super(x, y, sprite);
 	}
 

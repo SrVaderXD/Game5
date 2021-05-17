@@ -3,7 +3,10 @@ package com.gcstudios.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import com.gcstudios.entities.Spawner;
 import com.gcstudios.main.Game;
 
 public class World {
@@ -25,9 +28,13 @@ public class World {
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
 					if (pixelAtual == 0xFF000000) {
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_GRASS);
+						tiles[xx + (yy * WIDTH)] = new GrassTile(xx * 16, yy * 16, Tile.TILE_GRASS);
 					} else if (pixelAtual == 0xFFFFFFFF) {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+					} else if (pixelAtual == 0xFFFF0000) {
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+						Spawner spawner = new Spawner(xx * 16, yy * 16, 16, 16, 0, null);
+						Game.entities.add(spawner);
 					}
 				}
 			}
@@ -50,10 +57,10 @@ public class World {
 		int x4 = (xnext + TILE_SIZE - 1) / TILE_SIZE;
 		int y4 = (ynext + TILE_SIZE - 1) / TILE_SIZE;
 
-		return !((tiles[x1 + (y1 * World.WIDTH)] instanceof WallTile)
-				|| (tiles[x2 + (y2 * World.WIDTH)] instanceof WallTile)
-				|| (tiles[x3 + (y3 * World.WIDTH)] instanceof WallTile)
-				|| (tiles[x4 + (y4 * World.WIDTH)] instanceof WallTile));
+		return !((tiles[x1 + (y1 * World.WIDTH)] instanceof GrassTile)
+				|| (tiles[x2 + (y2 * World.WIDTH)] instanceof GrassTile)
+				|| (tiles[x3 + (y3 * World.WIDTH)] instanceof GrassTile)
+				|| (tiles[x4 + (y4 * World.WIDTH)] instanceof GrassTile));
 	}
 
 	public static void restartGame() {
