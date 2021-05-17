@@ -19,7 +19,7 @@ public class Spawner extends Entity {
 		if (curTimer == timer) {
 			curTimer = 0;
 			timer = Entity.rand.nextInt(90 - 45) + 45;
-			Enemy enemy = new Enemy(x, y, 16, 16, 1, Entity.ENEMY1_RIGHT);
+			Enemy enemy = new Enemy(x, y, 16, 16, Entity.rand.nextInt(3 - 1) + 1, Entity.ENEMY1_RIGHT);
 			Game.entities.add(enemy);
 		}
 	}

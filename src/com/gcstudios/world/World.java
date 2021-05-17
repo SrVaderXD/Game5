@@ -3,9 +3,7 @@ package com.gcstudios.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import com.gcstudios.entities.Spawner;
 import com.gcstudios.main.Game;
 
@@ -14,6 +12,8 @@ public class World {
 	public static Tile[] tiles;
 	public static int WIDTH, HEIGHT;
 	public static final int TILE_SIZE = 16;
+
+	public static int xINITIAL = 0, yINITIAL = 0, xFINAL = 0, yFINAL = 0;
 
 	public World(String path) {
 		try {
@@ -35,6 +35,12 @@ public class World {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
 						Spawner spawner = new Spawner(xx * 16, yy * 16, 16, 16, 0, null);
 						Game.entities.add(spawner);
+						xINITIAL = xx;
+						yINITIAL = yy;
+					} else if (pixelAtual == 0xFF0000FF) {
+						tiles[xx + (yy * WIDTH)] = new TargetTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+						xFINAL = xx;
+						yFINAL = yy;
 					}
 				}
 			}

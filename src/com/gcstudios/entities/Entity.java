@@ -24,7 +24,7 @@ public class Entity {
 
 	public int depth;
 
-	protected List<Node> path;
+	public List<Node> path;
 
 	public boolean debug = false;
 
@@ -97,15 +97,15 @@ public class Entity {
 				// xprev = x;
 				// yprev = y;
 				if (x < target.x * 16) {
-					x++;
+					x += speed;
 				} else if (x > target.x * 16) {
-					x--;
+					x -= speed;
 				}
 
 				if (y < target.y * 16) {
-					y++;
+					y += speed;
 				} else if (y > target.y * 16) {
-					y--;
+					y -= speed;
 				}
 
 				if (x == target.x * 16 && y == target.y * 16) {
