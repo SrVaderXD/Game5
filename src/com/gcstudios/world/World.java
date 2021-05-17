@@ -25,8 +25,8 @@ public class World {
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
 					if (pixelAtual == 0xFF000000) {
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL);
-					} else if (pixelAtual == 0xFFffffff) {
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_GRASS);
+					} else if (pixelAtual == 0xFFFFFFFF) {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
 					}
 				}
