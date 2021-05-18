@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -13,11 +16,12 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.JFrame;
 import com.gcstudios.entities.Entity;
+import com.gcstudios.entities.TowerController;
 import com.gcstudios.graphics.Spritesheet;
 import com.gcstudios.graphics.UI;
 import com.gcstudios.world.World;
 
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
 	public static JFrame frame;
@@ -34,21 +38,26 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Spritesheet spritesheet;
 
 	public UI ui;
-	
+
 	public static int maxLife = 7, curLife = maxLife;
 	public static int coins = 100;
-	
+
 	public int curLevel = 1, maxLevel = 10;
+
+	public TowerController towerController;
 
 	public Game() {
 		addKeyListener(this);
+		addMouseListener(this);
+		addMouseMotionListener(this);
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		initFrame();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
-		world = new World("/level"+curLevel+".png");
+		world = new World("/level" + curLevel + ".png");
 		ui = new UI();
+		towerController = new TowerController(0, 0, 0, 0, 0, null);
 
 	}
 
@@ -88,6 +97,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			Entity e = entities.get(i);
 			e.tick();
 		}
+
+		towerController.tick();
 
 	}
 
@@ -157,6 +168,50 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		towerController.isPressed = true;
+		towerController.xTarget = e.getX() / 3;
+		towerController.yTarget = e.getY() / 3;
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
