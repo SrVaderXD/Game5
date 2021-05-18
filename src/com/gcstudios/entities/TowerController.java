@@ -22,7 +22,7 @@ public class TowerController extends Entity {
 			int xx = (xTarget / 16) * 16;
 			int yy = (yTarget / 16) * 16;
 			
-			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(0, 64, 16, 16));
+			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(0, 112, 16, 16));
 			
 			for (int i = 0; i < Game.entities.size(); i++) {
 				Entity e = Game.entities.get(i);
@@ -42,7 +42,7 @@ public class TowerController extends Entity {
 			if (free) {
 				if (Game.coins >= 2) {
 					Game.entities.add(player);
-					Game.coins -= 2;
+					Game.coins -= 20;
 				} else {
 					System.out.println("You don't have enough coins!!");
 				}

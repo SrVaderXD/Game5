@@ -8,10 +8,10 @@ import com.gcstudios.main.Game;
 
 public class UI {
 
-	public static BufferedImage HEART1 = Game.spritesheet.getSprite(0, 48, 16, 16);
-	public static BufferedImage HEART2 = Game.spritesheet.getSprite(16, 48, 16, 16);
-	public static BufferedImage COIN[] = { Game.spritesheet.getSprite(32, 48, 16, 16),
-			Game.spritesheet.getSprite(48, 48, 16, 16) };
+	public static BufferedImage HEART1 = Game.spritesheet.getSprite(0, 96, 16, 16);
+	public static BufferedImage HEART2 = Game.spritesheet.getSprite(16, 96, 16, 16);
+	public static BufferedImage COIN[] = { Game.spritesheet.getSprite(32, 96, 16, 16),
+			Game.spritesheet.getSprite(48, 96, 16, 16) };
 
 	private int animationFrames = 0, maxAnimationFrames = 14, spriteIndex = 0, maxSpriteIndex = 1;
 	

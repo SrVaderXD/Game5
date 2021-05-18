@@ -14,8 +14,22 @@ import com.gcstudios.world.World;
 
 public class Entity {
 
-	public static BufferedImage ENEMY1_RIGHT = Game.spritesheet.getSprite(0, 32, 16, 16);
-	public static BufferedImage ENEMY1_LEFT = Game.spritesheet.getSprite(16, 32, 16, 16);
+	public static BufferedImage ENEMY1_RIGHT[] = {Game.spritesheet.getSprite(0, 32, 16, 16),
+			Game.spritesheet.getSprite(16, 32, 16, 16),
+			Game.spritesheet.getSprite(32, 32, 16, 16)};
+	
+	public static BufferedImage ENEMY1_LEFT[] = {Game.spritesheet.getSprite(0, 48, 16, 16),
+			Game.spritesheet.getSprite(16, 48, 16, 16),
+			Game.spritesheet.getSprite(32, 48, 16, 16)};
+	
+	public static BufferedImage ENEMY1_UP[] = {Game.spritesheet.getSprite(0, 64, 16, 16),
+			Game.spritesheet.getSprite(16, 64, 16, 16),
+			Game.spritesheet.getSprite(32, 64, 16, 16)};
+	
+	public static BufferedImage ENEMY1_DOWN[] = {Game.spritesheet.getSprite(0, 80, 16, 16),
+			Game.spritesheet.getSprite(16, 80, 16, 16),
+			Game.spritesheet.getSprite(32, 80, 16, 16)};
+	
 	protected double x;
 	protected double y;
 	protected int width;
@@ -98,14 +112,30 @@ public class Entity {
 				// yprev = y;
 				if (x < target.x * 16) {
 					x += speed;
+					Enemy.right = true;
+					Enemy.left = false;
+					Enemy.up = false;
+					Enemy.down = false;
 				} else if (x > target.x * 16) {
 					x -= speed;
+					Enemy.right = false;
+					Enemy.left = true;
+					Enemy.up = false;
+					Enemy.down = false;
 				}
 
 				if (y < target.y * 16) {
 					y += speed;
+					Enemy.right = false;
+					Enemy.left = false;
+					Enemy.up = true;
+					Enemy.down = false;
 				} else if (y > target.y * 16) {
 					y -= speed;
+					Enemy.right = false;
+					Enemy.left = false;
+					Enemy.up = false;
+					Enemy.down = true;
 				}
 
 				if (x == target.x * 16 && y == target.y * 16) {
