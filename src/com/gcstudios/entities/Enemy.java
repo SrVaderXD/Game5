@@ -12,7 +12,7 @@ public class Enemy extends Entity {
 
 	public boolean right = true, left = false;
 
-	public int vida = 3;
+	public int life = 3;
 
 	public Enemy(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
@@ -25,7 +25,7 @@ public class Enemy extends Entity {
 		followPath(path);
 
 		if (x >= Game.WIDTH) {
-			System.out.println("Damage!!!");
+			Game.curLife--;
 			Game.entities.remove(this);
 		}
 	}

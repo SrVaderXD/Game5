@@ -34,6 +34,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Spritesheet spritesheet;
 
 	public UI ui;
+	
+	public static int maxLife = 7, curLife = maxLife;
+	public static int coins = 100;
+	
+	public int curLevel = 1, maxLevel = 10;
 
 	public Game() {
 		addKeyListener(this);
@@ -42,7 +47,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
-		world = new World("/level1.png");
+		world = new World("/level"+curLevel+".png");
 		ui = new UI();
 
 	}
