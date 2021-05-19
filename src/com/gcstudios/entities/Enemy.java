@@ -1,5 +1,6 @@
 package com.gcstudios.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import com.gcstudios.main.Game;
@@ -9,7 +10,7 @@ import com.gcstudios.world.World;
 
 public class Enemy extends Entity {
 
-	public int life = 3;
+	public double life = 30;
 
 	public int dir = 1;
 
@@ -26,17 +27,24 @@ public class Enemy extends Entity {
 
 	public void tick() {
 		followPath(path);
-
 		if (x >= Game.WIDTH) {
 			Game.curLife--;
 			Game.entities.remove(this);
 		}
-		
+
+		if (life <= 0) {
+			Game.entities.remove(this);
+			Game.coins += 5;
+			return;
+		}
+
 		animation();
 		directionChanger();
 	}
 
 	public void render(Graphics g) {
+		enemyUI(g);
+
 		if (dir == 1) {
 			g.drawImage(Entity.ENEMY1_RIGHT[index], this.getX(), this.getY(), null);
 		}
@@ -72,7 +80,7 @@ public class Enemy extends Entity {
 			dir = 4;
 		}
 	}
-	
+
 	private void animation() {
 		animationFrames++;
 		if (animationFrames == maxAnimationFrames) {
@@ -81,6 +89,14 @@ public class Enemy extends Entity {
 			if (index > maxIndex)
 				index = 0;
 		}
+	}
+
+	private void enemyUI(Graphics g) {
+		g.setColor(Color.red);
+		g.fillRect((int) x, (int) (y - 5), 15, 6);
+
+		g.setColor(Color.green);
+		g.fillRect((int) x, (int) (y - 5), (int) ((life / 60) * 30), 6);
 	}
 
 }

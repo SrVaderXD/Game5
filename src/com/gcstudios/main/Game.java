@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public UI ui;
 
 	public static int maxLife = 7, curLife = maxLife;
-	public static int coins = 100;
+	public static int coins = 80;
 
 	public int curLevel = 1, maxLevel = 10;
 

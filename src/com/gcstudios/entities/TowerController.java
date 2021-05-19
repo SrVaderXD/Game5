@@ -16,14 +16,14 @@ public class TowerController extends Entity {
 	public void tick() {
 		if (isPressed) {
 			isPressed = false;
-			
+
 			boolean free = true;
-			
+
 			int xx = (xTarget / 16) * 16;
 			int yy = (yTarget / 16) * 16;
-			
+
 			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(0, 112, 16, 16));
-			
+
 			for (int i = 0; i < Game.entities.size(); i++) {
 				Entity e = Game.entities.get(i);
 				if (e instanceof Player) {
@@ -40,7 +40,7 @@ public class TowerController extends Entity {
 			}
 
 			if (free) {
-				if (Game.coins >= 2) {
+				if (Game.coins >= 20) {
 					Game.entities.add(player);
 					Game.coins -= 20;
 				} else {
@@ -48,6 +48,10 @@ public class TowerController extends Entity {
 				}
 			}
 
+		}
+		
+		if (Game.curLife <= 0) {
+			System.exit(1);
 		}
 
 	}
