@@ -1,4 +1,4 @@
 # Game5
-Game05 from DankiCode course. - Finished
+Game05. - Finished
 
 A simple tower defense game.
